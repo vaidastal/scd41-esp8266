@@ -5,6 +5,10 @@ Sensor::Sensor(void) {
 }
 
 void Sensor::initialize() {
+    if (isConfigured) {
+        return;
+    }
+
     Wire.begin(sda_pin, scl_pin); // If something is wrong, it is required to set address as well 0x62
     scd4x.begin(Wire);
 
@@ -44,7 +48,7 @@ void Sensor::getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &serial2)
     }
 }
 
-void Sensor::readData(uint16_t &co2, float &temp, float &humidity) {
+void Sensor::readData() {
     if (!isConfigured) {
         return;
     }
@@ -98,3 +102,14 @@ void Sensor::printUint16Hex(uint16_t value) {
     Serial.print(value, HEX);
 }
 
+uint16_t Sensor::getCO2() {
+    return co2;
+}
+
+float Sensor::getTemp() {
+    return temp;
+}
+
+float Sensor::getHumidity() {
+    return humidity;
+}

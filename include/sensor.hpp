@@ -7,8 +7,11 @@ class Sensor {
     public:
         Sensor(void);
         void getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &serial2);
-        void readData(uint16_t &co2, float &temp, float &humidity);
-
+        void readData();
+        uint16_t getCO2();
+        float getTemp();
+        float getHumidity();
+        
         bool isConfigured = false;
     private:
         void initialize();
@@ -21,10 +24,10 @@ class Sensor {
         uint8_t scl_pin = 14;
         uint8_t sda_pin = 2;
 
+        uint16_t co2;
+        float temp;
+        float humidity;
        
         uint16_t error;
         char errorMessage[256];
-      
-
-
 };
