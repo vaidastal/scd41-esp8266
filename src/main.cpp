@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "sensor.hpp"
 #include "WiFiSettings.h"
 #include "LittleFS.h"
 #include "state.hpp"
@@ -16,15 +15,19 @@ void setup() {
     //scd41 = new Sensor();
 
     //LittleFS.begin();
-    LittleFS.begin();
+    //LittleFS.begin();
 
-    WiFiSettings.connect();
+    //WiFiSettings.connect();
 }
 
 void loop() {
    
 
     delay(100);
+    //Serial.println("Status:" + DeviceState::getInstance().scd41->isConfigured);
+    if (DeviceState::getInstance().readSCD41sensorData()) {
+      Serial.print("CO2: "); Serial.println(DeviceState::getInstance().getCO2value());
+    }
 
     // Read Measurement
     //uint16_t co2 = 0;
