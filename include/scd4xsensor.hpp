@@ -1,16 +1,14 @@
-#define OUTPUT_MSG_SIZE 512
-
-//#pragma once
-
 #include <Wire.h>
 #include "SensirionI2CScd4x.h"
 #include "msgconst.hpp"
 
-class SCD41Sensor {
+#define OUTPUT_MSG_SIZE 512
+
+class SCD4xSensor {
     public:
         bool isConfigured = false;
 
-        SCD41Sensor(void);
+        SCD4xSensor(void);
         
         bool configureSensor();
         void getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &serial2);

@@ -1,13 +1,13 @@
 #include "state.hpp"
 
-void DeviceState::initializeSensors() {
-    scd41 = new SCD41Sensor();
+void DeviceState::configureSensors() {
+    scd41 = new SCD4xSensor();
     scd41->configureSensor();
 }
 
-bool DeviceState::readSCD41sensorData(void) {
+bool DeviceState::readSCD4xsensorData(void) {
     if (scd41->isConfigured) {
-      return scd41->readData();
+      return scd41->readSensorData();
     } else {
       return false;
     }

@@ -1,10 +1,10 @@
 #include "scd41sensor.hpp"
 
-SCD41Sensor::SCD41Sensor(void) {
+SCD4xSensor::SCD4xSensor(void) {
     
 }
 
-bool SCD41Sensor::configureSensor() {
+bool SCD4xSensor::configureSensor() {
     memset(&(outputMessage[0]), 0, (uint16_t) OUTPUT_MSG_SIZE);
     char messageBuffer[256];
     uint16_t error;
@@ -33,7 +33,7 @@ bool SCD41Sensor::configureSensor() {
     return isConfigured;
 }
 
-void SCD41Sensor::getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &serial2) {
+void SCD4xSensor::getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &serial2) {
     uint16_t error;
 
     if (!isConfigured) {
@@ -50,7 +50,7 @@ void SCD41Sensor::getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &ser
     }
 }
 
-bool SCD41Sensor::readData() {
+bool SCD4xSensor::readData() {
     memset(&(outputMessage[0]), 0, (uint16_t) OUTPUT_MSG_SIZE);
     char messageBuffer[256];
     uint16_t error;
@@ -91,7 +91,7 @@ bool SCD41Sensor::readData() {
     return false;
 }
 
-void SCD41Sensor::printSerialNumber(uint16_t serial0, uint16_t serial1, uint16_t serial2) {
+void SCD4xSensor::printSerialNumber(uint16_t serial0, uint16_t serial1, uint16_t serial2) {
     Serial.print("Serial: 0x");
     printUint16Hex(serial0);
     printUint16Hex(serial1);
@@ -99,21 +99,21 @@ void SCD41Sensor::printSerialNumber(uint16_t serial0, uint16_t serial1, uint16_t
     Serial.println();
 }
 
-void SCD41Sensor::printUint16Hex(uint16_t value) {
+void SCD4xSensor::printUint16Hex(uint16_t value) {
     Serial.print(value < 4096 ? "0" : "");
     Serial.print(value < 256 ? "0" : "");
     Serial.print(value < 16 ? "0" : "");
     Serial.print(value, HEX);
 }
 
-uint16_t SCD41Sensor::getCO2() {
+uint16_t SCD4xSensor::getCO2() {
     return co2;
 }
 
-float SCD41Sensor::getTemp() {
+float SCD4xSensor::getTemp() {
     return temp;
 }
 
-float SCD41Sensor::getHumidity() {
+float SCD4xSensor::getHumidity() {
     return humidity;
 }
