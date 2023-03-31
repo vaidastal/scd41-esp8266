@@ -1,11 +1,13 @@
-#include "scd41sensor.hpp"
+#include "scd4xsensor.hpp"
+#include "msgconst.hpp"
+#include "parameters.hpp"
 
 SCD4xSensor::SCD4xSensor(void) {
     
 }
 
 bool SCD4xSensor::configureSensor() {
-    memset(&(outputMessage[0]), 0, (uint16_t) OUTPUT_MSG_SIZE);
+    memset(&(outputMessage[0]), 0, (uint16_t) SENSOR_OUTPUT_MSG_SIZE);
     char messageBuffer[256];
     uint16_t error;
         
@@ -50,8 +52,8 @@ void SCD4xSensor::getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &ser
     }
 }
 
-bool SCD4xSensor::readData() {
-    memset(&(outputMessage[0]), 0, (uint16_t) OUTPUT_MSG_SIZE);
+bool SCD4xSensor::readSensorData() {
+    memset(&(outputMessage[0]), 0, (uint16_t) SENSOR_OUTPUT_MSG_SIZE);
     char messageBuffer[256];
     uint16_t error;
     co2 = 0;

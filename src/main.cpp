@@ -1,7 +1,9 @@
 #include <Arduino.h>
 #include "WiFiSettings.h"
 #include "LittleFS.h"
-#include "state.hpp"
+
+//#include "global.hpp"
+#include "devicestate.hpp"
 
 //Sensor *scd41;
 
@@ -25,7 +27,7 @@ void loop() {
 
     delay(100);
     //Serial.println("Status:" + DeviceState::getInstance().scd41->isConfigured);
-    if (DeviceState::getInstance().readSCD41sensorData()) {
+    if (DeviceState::getInstance().readSCD4xsensorData()) {
       Serial.print("CO2: "); Serial.println(DeviceState::getInstance().getCO2value());
     }
 

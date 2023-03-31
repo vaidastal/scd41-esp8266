@@ -1,8 +1,6 @@
 #include <Wire.h>
 #include "SensirionI2CScd4x.h"
-#include "msgconst.hpp"
-
-#define OUTPUT_MSG_SIZE 512
+#include "parameters.hpp"
 
 class SCD4xSensor {
     public:
@@ -12,7 +10,7 @@ class SCD4xSensor {
         
         bool configureSensor();
         void getSerials(uint16_t &serial0, uint16_t &serial1, uint16_t &serial2);
-        bool readData();
+        bool readSensorData();
         uint16_t getCO2();
         float getTemp();
         float getHumidity();
@@ -28,7 +26,7 @@ class SCD4xSensor {
         float temp;
         float humidity;
        
-        char outputMessage[OUTPUT_MSG_SIZE];
+        char outputMessage[SENSOR_OUTPUT_MSG_SIZE];
         
         void printSerialNumber(uint16_t serial0, uint16_t serial1, uint16_t serial2);
         void printUint16Hex(uint16_t value);

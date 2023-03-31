@@ -1,4 +1,4 @@
-#include "scd41sensor.hpp"
+#include "scd4xsensor.hpp"
 
 class DeviceState {
     public:
@@ -12,13 +12,13 @@ class DeviceState {
         DeviceState(DeviceState const&) = delete;
         void operator=(DeviceState const&) = delete;
 
-        void initializeSensors();
-        bool readSCD41sensorData(void);
+        void configureSensors();
+        bool readSCD4xsensorData(void);
         uint16_t getCO2value(void);
         float getTempValue(void);
         float getHumidityValue(void);     
     private:
-        SCD41Sensor *scd41;              
+        SCD4xSensor *scd4x;              
 
         DeviceState() {};
 };
